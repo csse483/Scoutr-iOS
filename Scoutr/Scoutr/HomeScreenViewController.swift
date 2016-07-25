@@ -8,6 +8,11 @@
 
 import UIKit
 
+
+enum FieldStation {
+    case Red1, Red2, Red3, Blue1, Blue2, Blue3
+}
+
 class HomeScreenViewController: UIViewController {
 
     @IBOutlet weak var tournamentLabel: UILabel!
@@ -17,11 +22,21 @@ class HomeScreenViewController: UIViewController {
     @IBOutlet weak var scoutNextMatchButton: HomeScreenButton!
     
     var tournament : Tournament?
+    var fieldStation : FieldStation?
+    
     let setUpTournamentSegueIdentifier = "setUpTournamentSegue"
     let viewDataSegueIdentifier = "viewDataSegue"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureView()
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        configureView()
+    }
+    
+    func configureView() {
         if (tournament == nil) {
             tournamentLabel.text = "Please set up a tournament."
             matchLabel.text = NSString.localizedStringWithFormat("%@\r%@", "Match:", "N/A") as String
@@ -30,9 +45,10 @@ class HomeScreenViewController: UIViewController {
             scoutNextMatchButton.enabled = false;
         }
         else {
-            viewDataButton.enabled = false;
-            scoutNextMatchButton.enabled = false;
+            viewDataButton.enabled = true;
+            scoutNextMatchButton.enabled = true;
             tournamentLabel.text = NSString.localizedStringWithFormat("%@\r%@", "Tournament:", tournament!.name) as String
+            self.view.backgroundColor = self.fieldStation!.hashValue > 3 ? UIColor(red: 205/256, green: 253/256, blue: 253/256, alpha: 1): UIColor(red: 247/256, green: 211/256, blue: 211/256, alpha: 1)
             //TODO: Put data into match and team labels
         }
     }

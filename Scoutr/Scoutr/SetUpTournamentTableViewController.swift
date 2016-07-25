@@ -20,6 +20,12 @@ class SetUpTournamentTableViewController: UITableViewController {
     var tournaments : [Tournament] = []
     let cellIdentifier = "tournamentCell"
     let segueIdentifier = "unwindToHome"
+    var selectedStation : FieldStation? {
+        didSet{
+            self.performSegueWithIdentifier(self.segueIdentifier, sender: nil)
+        }
+    }
+    var selectedTournament : Tournament?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,14 +49,6 @@ class SetUpTournamentTableViewController: UITableViewController {
         tournaments.append(Tournament(key: "2016aroz", name: "Ozark Mountain Brawl"))
         tournaments.append(Tournament(key: "2016ausy", name: "Australia Regional"))
         tournaments.append(Tournament(key: "2016azfl", name: "Arizona North Regiona"))
-    }
-    
-    func filterTournaments(searchText: String)
-    {
-        filteredTournaments = tournaments.filter({ (tournament) -> Bool in
-            return tournament.name.lowercaseString.containsString(searchText.lowercaseString)
-        })
-        tableView.reloadData()
     }
     
     // MARK: - Table view data source
@@ -77,45 +75,24 @@ class SetUpTournamentTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier(segueIdentifier, sender: indexPath)
+        
+        if searchController.active && searchController.searchBar.text != "" {
+            selectedTournament = filteredTournaments[indexPath.row]
+        } else {
+            selectedTournament = tournaments[indexPath.row]
+        }
+
+        let ac = UIAlertController(title: "Pick a station to scout", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+        ac.addAction(UIAlertAction(title: "Red 1", style: UIAlertActionStyle.Destructive, handler: {(_) in self.selectedStation = FieldStation.Red1}))
+        ac.addAction(UIAlertAction(title: "Red 2", style: UIAlertActionStyle.Destructive, handler: {(_) in self.selectedStation = FieldStation.Red2}))
+        ac.addAction(UIAlertAction(title: "Red 3", style: UIAlertActionStyle.Destructive, handler: {(_) in self.selectedStation = FieldStation.Red3}))
+        ac.addAction(UIAlertAction(title: "Blue 1", style: UIAlertActionStyle.Default, handler: {(_) in self.selectedStation = FieldStation.Blue1}))
+        ac.addAction(UIAlertAction(title: "Blue 2", style: UIAlertActionStyle.Default, handler: {(_) in self.selectedStation = FieldStation.Blue2}))
+        ac.addAction(UIAlertAction(title: "Blue 3", style: UIAlertActionStyle.Default, handler: {(_) in self.selectedStation = FieldStation.Blue3}))
+        ac.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(ac, animated: true) {
+        }
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     
     // MARK: - Navigation
 
@@ -125,15 +102,21 @@ class SetUpTournamentTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         if (segue.identifier == segueIdentifier) {
             let destinationViewController = segue.destinationViewController as! HomeScreenViewController
-            var selectedTournament : Tournament
-            if searchController.active && searchController.searchBar.text != "" {
-                selectedTournament = filteredTournaments[(sender as! NSIndexPath).row]
-            } else {
-                selectedTournament = tournaments[(sender as! NSIndexPath).row]
-            }
-            NSLog("Going back to home screen. Set up for the \(selectedTournament.name)")
+            destinationViewController.fieldStation = self.selectedStation!
             destinationViewController.tournament = selectedTournament
+            NSLog("Going back to home screen. Set up for the \(selectedTournament!.name) at \(self.selectedStation)")
+           
         }
+    }
+    
+    // MARK: - Search
+
+    func filterTournaments(searchText: String)
+    {
+        filteredTournaments = tournaments.filter({ (tournament) -> Bool in
+            return tournament.name.lowercaseString.containsString(searchText.lowercaseString)
+        })
+        tableView.reloadData()
     }
 }
 
@@ -142,3 +125,5 @@ extension SetUpTournamentTableViewController: UISearchResultsUpdating {
         filterTournaments(searchController.searchBar.text!)
     }
 }
+
+
