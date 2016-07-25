@@ -9,6 +9,16 @@
 import UIKit
 
 class HomeScreenButton: UIButton {
+    
+    @IBInspectable var borderColor: UIColor? {
+        didSet {
+            layer.borderColor = borderColor?.CGColor
+            layer.borderWidth = 1
+            layer.cornerRadius = 5
+        }
+    }
+    
+
 
     /*
     // Only override drawRect: if you perform custom drawing.
