@@ -45,16 +45,25 @@ class HomeScreenViewController: UIViewController {
             scoutNextMatchButton.enabled = false;
         }
         else {
+            if (!viewDataButton.enabled) {
+                //If the button was disabled, that means the tournament state was just changed. Reload all the match data from TBA
+                getMatchDataFromTBA()
+            }
             viewDataButton.enabled = true;
             scoutNextMatchButton.enabled = true;
             tournamentLabel.text = NSString.localizedStringWithFormat("%@\r%@", "Tournament:", "\(tournament!.name) - \(fieldStation!)") as String
-            self.view.backgroundColor = self.fieldStation!.hashValue > 3 ? UIColor(red: 205/256, green: 253/256, blue: 253/256, alpha: 1): UIColor(red: 247/256, green: 211/256, blue: 211/256, alpha: 1)
+            self.view.backgroundColor = self.fieldStation!.hashValue > 2 ? UIColor(red: 205/256, green: 253/256, blue: 253/256, alpha: 1): UIColor(red: 247/256, green: 211/256, blue: 211/256, alpha: 1)
             //TODO: Put data into match and team labels
         }
+    }
+    
+    func getMatchDataFromTBA() {
+        //TODO
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        NSLog("Recieved memory warning.")
     }
     
 

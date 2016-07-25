@@ -30,6 +30,7 @@ class SetUpTournamentTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addFakeData() //TODO: Remove this when JSON parsing of TBA data is implemented
+        getTournamentListFromTBA()
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
@@ -52,6 +53,10 @@ class SetUpTournamentTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
+    
+    func getTournamentListFromTBA() {
+        
+    }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.active && searchController.searchBar.text != "" {
