@@ -47,7 +47,7 @@ class HomeScreenViewController: UIViewController {
         else {
             viewDataButton.enabled = true;
             scoutNextMatchButton.enabled = true;
-            tournamentLabel.text = NSString.localizedStringWithFormat("%@\r%@", "Tournament:", tournament!.name) as String
+            tournamentLabel.text = NSString.localizedStringWithFormat("%@\r%@", "Tournament:", "\(tournament!.name) - \(fieldStation!)") as String
             self.view.backgroundColor = self.fieldStation!.hashValue > 3 ? UIColor(red: 205/256, green: 253/256, blue: 253/256, alpha: 1): UIColor(red: 247/256, green: 211/256, blue: 211/256, alpha: 1)
             //TODO: Put data into match and team labels
         }
