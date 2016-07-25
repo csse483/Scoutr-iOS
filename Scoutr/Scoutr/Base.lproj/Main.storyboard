@@ -186,6 +186,13 @@ Team 3476</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Scoutr" id="F8q-7D-Igs"/>
+                    <connections>
+                        <outlet property="matchLabel" destination="DkJ-8B-wDw" id="gPN-CH-dRH"/>
+                        <outlet property="scoutNextMatchButton" destination="ffU-ZK-czj" id="gem-fq-oMd"/>
+                        <outlet property="teamLabel" destination="YF2-2Q-IFE" id="dLg-iS-XmJ"/>
+                        <outlet property="tournamentLabel" destination="fKr-cI-9Ca" id="14R-cP-Vkt"/>
+                        <outlet property="viewDataButton" destination="x74-f6-M3J" id="ReA-Oa-hPQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -218,7 +225,7 @@ Team 3476</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nfr-gM-oYN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1402" y="347"/>
+            <point key="canvasLocation" x="1532" y="363"/>
         </scene>
         <!--Set Up New Tournament-->
         <scene sceneID="r0J-zF-l2h">

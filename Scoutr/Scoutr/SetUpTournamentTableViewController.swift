@@ -8,6 +8,11 @@
 
 import UIKit
 
+struct Tournament {
+    let key : String
+    let name : String
+}
+
 class SetUpTournamentTableViewController: UITableViewController {
     
     var searchController = UISearchController(searchResultsController: nil)
@@ -15,11 +20,6 @@ class SetUpTournamentTableViewController: UITableViewController {
     var tournaments : [Tournament] = []
     let cellIdentifier = "tournamentCell"
     let segueIdentifier = "unwindToHome"
-    
-    struct Tournament {
-        let key : String
-        let name : String
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,6 @@ class SetUpTournamentTableViewController: UITableViewController {
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -78,7 +77,7 @@ class SetUpTournamentTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier(segueIdentifier, sender: tournaments[indexPath.row].key)
+        self.performSegueWithIdentifier(segueIdentifier, sender: indexPath)
     }
     
 
@@ -126,8 +125,14 @@ class SetUpTournamentTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         if (segue.identifier == segueIdentifier) {
             let destinationViewController = segue.destinationViewController as! HomeScreenViewController
-            destinationViewController.tournamentKey = (sender as! String)
-            NSLog("Going back to home screen. Set up for the \(sender as! String)")
+            var selectedTournament : Tournament
+            if searchController.active && searchController.searchBar.text != "" {
+                selectedTournament = filteredTournaments[(sender as! NSIndexPath).row]
+            } else {
+                selectedTournament = tournaments[(sender as! NSIndexPath).row]
+            }
+            NSLog("Going back to home screen. Set up for the \(selectedTournament.name)")
+            destinationViewController.tournament = selectedTournament
         }
     }
 }

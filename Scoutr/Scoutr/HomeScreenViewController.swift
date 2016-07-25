@@ -10,17 +10,35 @@ import UIKit
 
 class HomeScreenViewController: UIViewController {
 
-    var tournamentKey : String?
+    @IBOutlet weak var tournamentLabel: UILabel!
+    @IBOutlet weak var matchLabel: UILabel!
+    @IBOutlet weak var teamLabel: UILabel!
+    @IBOutlet weak var viewDataButton: HomeScreenButton!
+    @IBOutlet weak var scoutNextMatchButton: HomeScreenButton!
+    
+    var tournament : Tournament?
     let setUpTournamentSegueIdentifier = "setUpTournamentSegue"
     let viewDataSegueIdentifier = "viewDataSegue"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if (tournament == nil) {
+            tournamentLabel.text = "Please set up a tournament."
+            matchLabel.text = NSString.localizedStringWithFormat("%@\r%@", "Match:", "N/A") as String
+            teamLabel.text = NSString.localizedStringWithFormat("%@\r%@", "Team:", "N/A") as String
+            viewDataButton.enabled = false;
+            scoutNextMatchButton.enabled = false;
+        }
+        else {
+            viewDataButton.enabled = false;
+            scoutNextMatchButton.enabled = false;
+            tournamentLabel.text = NSString.localizedStringWithFormat("%@\r%@", "Tournament:", tournament!.name) as String
+            //TODO: Put data into match and team labels
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
