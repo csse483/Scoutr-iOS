@@ -10,6 +10,8 @@ import UIKit
 
 class SetUpTournamentTableViewController: UITableViewController {
     
+    var searchController = UISearchController(searchResultsController: nil)
+    var filteredTournaments : [Tournament] = []
     var tournaments : [Tournament] = []
     let cellIdentifier = "tournamentCell"
     let segueIdentifier = "unwindToHome"
@@ -22,6 +24,11 @@ class SetUpTournamentTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addFakeData() //TODO: Remove this when JSON parsing of TBA data is implemented
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,21 +44,36 @@ class SetUpTournamentTableViewController: UITableViewController {
         tournaments.append(Tournament(key: "2016aroz", name: "Ozark Mountain Brawl"))
         tournaments.append(Tournament(key: "2016ausy", name: "Australia Regional"))
         tournaments.append(Tournament(key: "2016azfl", name: "Arizona North Regiona"))
-        
     }
-
+    
+    func filterTournaments(searchText: String)
+    {
+        filteredTournaments = tournaments.filter({ (tournament) -> Bool in
+            return tournament.name.lowercaseString.containsString(searchText.lowercaseString)
+        })
+        tableView.reloadData()
+    }
+    
     // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        if searchController.active && searchController.searchBar.text != "" {
+            return filteredTournaments.count
+        }
         return tournaments.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
-        cell.textLabel!.text = tournaments[indexPath.row].name
-        cell.detailTextLabel!.text = tournaments[indexPath.row].key
+        if searchController.active && searchController.searchBar.text != "" {
+            cell.textLabel!.text = filteredTournaments[indexPath.row].name
+            cell.detailTextLabel!.text = filteredTournaments[indexPath.row].key
+        }
+        else {
+            cell.textLabel!.text = tournaments[indexPath.row].name
+            cell.detailTextLabel!.text = tournaments[indexPath.row].key
+        }
         return cell
     }
     
@@ -108,6 +130,10 @@ class SetUpTournamentTableViewController: UITableViewController {
             NSLog("Going back to home screen. Set up for the \(sender as! String)")
         }
     }
- 
+}
 
+extension SetUpTournamentTableViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filterTournaments(searchController.searchBar.text!)
+    }
 }

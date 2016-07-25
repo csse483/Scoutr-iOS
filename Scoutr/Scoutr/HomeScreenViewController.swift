@@ -9,7 +9,7 @@
 import UIKit
 
 class HomeScreenViewController: UIViewController {
-    
+
     var tournamentKey : String?
     let setUpTournamentSegueIdentifier = "setUpTournamentSegue"
     let viewDataSegueIdentifier = "viewDataSegue"
