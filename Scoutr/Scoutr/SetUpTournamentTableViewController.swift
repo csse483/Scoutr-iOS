@@ -10,18 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-struct Tournament {
-    let key : String
-    let name : String
-}
 
-struct Constants {
-    static let tbaHeaders = [
-        "X-TBA-App-Id" : "frc281:scouting-system:v01",
-        "Accept" : "application/json"
-    ]
-    static let tbaURL = "https://www.thebluealliance.com/api/v2/"
-}
 
 class SetUpTournamentTableViewController: UITableViewController {
     
@@ -52,13 +41,9 @@ class SetUpTournamentTableViewController: UITableViewController {
     }
     
     func getTournamentListFromTBA() {
-        Alamofire.request(.GET, Constants.tbaURL+"events/2016", headers: Constants.tbaHeaders).responseJSON { (response) in
-            let jsonData = JSON(response.result.value!)
-            if let jsonArray : [[String:AnyObject]] = jsonData.arrayObject as? [[String:AnyObject]] {
-                for tournament in jsonArray {
-                    self.tournaments.append(Tournament(key: (tournament["key"] as? String)!, name: (tournament["name"] as? String)!))
-                }
-                self.tableView.reloadData()
+        if let jsonTournaments = TBAUtils.callTBA("events/2016") {
+            for tournament in jsonTournaments {
+                self.tournaments.append(Tournament(key: tournament["key"] as! String, name: tournament["name"] as! String))
             }
         }
     }
