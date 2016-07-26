@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 
 enum FieldStation {
@@ -20,6 +22,8 @@ class HomeScreenViewController: UIViewController {
     @IBOutlet weak var teamLabel: UILabel!
     @IBOutlet weak var viewDataButton: HomeScreenButton!
     @IBOutlet weak var scoutNextMatchButton: HomeScreenButton!
+    
+  
     
     var tournament : Tournament?
     var fieldStation : FieldStation?
@@ -58,7 +62,7 @@ class HomeScreenViewController: UIViewController {
     }
     
     func getMatchDataFromTBA() {
-        //TODO
+    
     }
 
     override func didReceiveMemoryWarning() {

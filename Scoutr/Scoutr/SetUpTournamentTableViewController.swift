@@ -7,10 +7,20 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 struct Tournament {
     let key : String
     let name : String
+}
+
+struct Constants {
+    static let tbaHeaders = [
+        "X-TBA-App-Id" : "frc281:scouting-system:v01",
+        "Accept" : "application/json"
+    ]
+    static let tbaURL = "https://www.thebluealliance.com/api/v2/"
 }
 
 class SetUpTournamentTableViewController: UITableViewController {
@@ -29,7 +39,6 @@ class SetUpTournamentTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addFakeData() //TODO: Remove this when JSON parsing of TBA data is implemented
         getTournamentListFromTBA()
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
@@ -41,22 +50,20 @@ class SetUpTournamentTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    func addFakeData() {
-        tournaments.append(Tournament(key: "2016abca", name: "Western Canada Regional"))
-        tournaments.append(Tournament(key: "2016alhu", name: "Rocket City Regional"))
-        tournaments.append(Tournament(key: "2016arc", name: "Archimedes Division"))
-        tournaments.append(Tournament(key: "2016arlr", name: "Arkansas Rock City Regional"))
-        tournaments.append(Tournament(key: "2016aroz", name: "Ozark Mountain Brawl"))
-        tournaments.append(Tournament(key: "2016ausy", name: "Australia Regional"))
-        tournaments.append(Tournament(key: "2016azfl", name: "Arizona North Regiona"))
+    
+    func getTournamentListFromTBA() {
+        Alamofire.request(.GET, Constants.tbaURL+"events/2016", headers: Constants.tbaHeaders).responseJSON { (response) in
+            let jsonData = JSON(response.result.value!)
+            if let jsonArray : [[String:AnyObject]] = jsonData.arrayObject as? [[String:AnyObject]] {
+                for tournament in jsonArray {
+                    self.tournaments.append(Tournament(key: (tournament["key"] as? String)!, name: (tournament["name"] as? String)!))
+                }
+                self.tableView.reloadData()
+            }
+        }
     }
     
     // MARK: - Table view data source
-    
-    func getTournamentListFromTBA() {
-        
-    }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.active && searchController.searchBar.text != "" {
