@@ -228,7 +228,7 @@ Team 3476</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nfr-gM-oYN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1406" y="383"/>
+            <point key="canvasLocation" x="1432" y="383"/>
         </scene>
         <!--Record Data-->
         <scene sceneID="JGy-eM-AWl">
@@ -269,7 +269,7 @@ Team 3476</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yXj-dR-4bX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="HQe-Pa-5St" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1406" y="1058"/>
+            <point key="canvasLocation" x="1432" y="1046"/>
         </scene>
         <!--Set Up New Tournament-->
         <scene sceneID="r0J-zF-l2h">

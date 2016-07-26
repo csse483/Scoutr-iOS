@@ -17,6 +17,7 @@
 		0AEA2F101D4009D1005C6727 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AEA2F0F1D4009D1005C6727 /* Assets.xcassets */; };
 		0AEA2F131D4009D1005C6727 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AEA2F111D4009D1005C6727 /* LaunchScreen.storyboard */; };
 		0AF499AA1D46D9A80019D307 /* RecordDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF499A91D46D9A80019D307 /* RecordDataViewController.swift */; };
+		3DAE7E9D5CD8E467A05AAE82 /* Pods_Scoutr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F622257C97270C96EDE101BB /* Pods_Scoutr.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,9 @@
 		0AEA2F121D4009D1005C6727 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0AEA2F141D4009D1005C6727 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AF499A91D46D9A80019D307 /* RecordDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordDataViewController.swift; sourceTree = "<group>"; };
+		20D2F161B620C582DB5D3D19 /* Pods-Scoutr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scoutr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Scoutr/Pods-Scoutr.debug.xcconfig"; sourceTree = "<group>"; };
+		A07EEFD55023E2B3DEEDD4A6 /* Pods-Scoutr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scoutr.release.xcconfig"; path = "Pods/Target Support Files/Pods-Scoutr/Pods-Scoutr.release.xcconfig"; sourceTree = "<group>"; };
+		F622257C97270C96EDE101BB /* Pods_Scoutr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scoutr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DAE7E9D5CD8E467A05AAE82 /* Pods_Scoutr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +66,8 @@
 			children = (
 				0AEA2F041D4009D1005C6727 /* Scoutr */,
 				0AEA2F031D4009D1005C6727 /* Products */,
+				9C167D7BF6C2B6C3283E1C23 /* Pods */,
+				1161AA45CBC7FD9260A01878 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -87,6 +94,23 @@
 			path = Scoutr;
 			sourceTree = "<group>";
 		};
+		1161AA45CBC7FD9260A01878 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F622257C97270C96EDE101BB /* Pods_Scoutr.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9C167D7BF6C2B6C3283E1C23 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				20D2F161B620C582DB5D3D19 /* Pods-Scoutr.debug.xcconfig */,
+				A07EEFD55023E2B3DEEDD4A6 /* Pods-Scoutr.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -94,9 +118,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0AEA2F171D4009D1005C6727 /* Build configuration list for PBXNativeTarget "Scoutr" */;
 			buildPhases = (
+				DCB2051ABE3F2C6EAD067F15 /* [CP] Check Pods Manifest.lock */,
 				0AEA2EFE1D4009D1005C6727 /* Sources */,
 				0AEA2EFF1D4009D1005C6727 /* Frameworks */,
 				0AEA2F001D4009D1005C6727 /* Resources */,
+				CF1F8E6A36A699C49E29F693 /* [CP] Embed Pods Frameworks */,
+				56EE3D35D76978E6B3D3FBC9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,6 +179,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		56EE3D35D76978E6B3D3FBC9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Scoutr/Pods-Scoutr-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CF1F8E6A36A699C49E29F693 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Scoutr/Pods-Scoutr-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DCB2051ABE3F2C6EAD067F15 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0AEA2EFE1D4009D1005C6727 /* Sources */ = {
@@ -277,6 +352,7 @@
 		};
 		0AEA2F181D4009D1005C6727 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20D2F161B620C582DB5D3D19 /* Pods-Scoutr.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Scoutr/Info.plist;
@@ -289,6 +365,7 @@
 		};
 		0AEA2F191D4009D1005C6727 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A07EEFD55023E2B3DEEDD4A6 /* Pods-Scoutr.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Scoutr/Info.plist;
