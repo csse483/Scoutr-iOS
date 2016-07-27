@@ -41,10 +41,13 @@ class SetUpTournamentTableViewController: UITableViewController {
     }
     
     func getTournamentListFromTBA() {
-        if let jsonTournaments = TBAUtils.callTBA("events/2016") {
-            for tournament in jsonTournaments {
-                self.tournaments.append(Tournament(key: tournament["key"] as! String, name: tournament["name"] as! String))
+        TBAUtils.callTBA("events/2016") { jsonTournaments in
+            for(_,tournament) in jsonTournaments {
+                if (tournament["official"].boolValue) {
+                    self.tournaments.append(Tournament(key: tournament["key"].stringValue, name: tournament["name"].stringValue))
+                }
             }
+            self.tableView.reloadData()
         }
     }
     
@@ -101,6 +104,7 @@ class SetUpTournamentTableViewController: UITableViewController {
             let destinationViewController = segue.destinationViewController as! HomeScreenViewController
             destinationViewController.fieldStation = self.selectedStation!
             destinationViewController.tournament = selectedTournament
+            destinationViewController.matchCount = 0
             NSLog("Going back to home screen. Set up for the \(selectedTournament!.name) at \(self.selectedStation)")
            
         }
