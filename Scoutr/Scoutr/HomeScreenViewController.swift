@@ -8,10 +8,6 @@
 
 import UIKit
 
-
-
-
-
 class HomeScreenViewController: UIViewController {
 
     @IBOutlet weak var tournamentLabel: UILabel!
@@ -19,37 +15,10 @@ class HomeScreenViewController: UIViewController {
     @IBOutlet weak var teamLabel: UILabel!
     @IBOutlet weak var viewDataButton: HomeScreenButton!
     @IBOutlet weak var scoutNextMatchButton: HomeScreenButton!
-    
-  
+    @IBAction func unwindToHome(seuge: UIStoryboardSegue){}
     
     var tournament : Tournament? {
-        didSet{
-            matches.removeAll()
-            TBAUtils.callTBA("event/\(tournament!.key)/matches") { jsonMatches in
-                for (_,match) in jsonMatches {
-                    if (match["comp_level"].stringValue) == "qm" {
-                        let red1 = match["alliances"]["red"]["teams"][0].stringValue
-                        let red2 = match["alliances"]["red"]["teams"][1].stringValue
-                        let red3 = match["alliances"]["red"]["teams"][2].stringValue
-                        let blue1 = match["alliances"]["blue"]["teams"][0].stringValue
-                        let blue2 = match["alliances"]["blue"]["teams"][1].stringValue
-                        let blue3 = match["alliances"]["blue"]["teams"][2].stringValue
-                        let newMatch = Match(red1: red1,
-                                             red2: red2,
-                                             red3: red3,
-                                             blue1: blue1,
-                                             blue2: blue2,
-                                             blue3: blue3,
-                                             matchNumber: match["match_number"].intValue)
-                        self.matches.append(newMatch)
-                    }
-                }
-                self.matches.sortInPlace({ (match1, match2) -> Bool in
-                    match1.matchNumber < match2.matchNumber
-                })
-                self.configureView()
-            }
-        }
+        didSet{getMatchDataFromTBA()}
     }
     
     var fieldStation : FieldStation?
@@ -63,10 +32,6 @@ class HomeScreenViewController: UIViewController {
         super.viewDidLoad()
         configureView()
     }
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        configureView()
-    }
     
     func configureView() {
         if (tournament == nil) {
@@ -75,8 +40,7 @@ class HomeScreenViewController: UIViewController {
             teamLabel.text = NSString.localizedStringWithFormat("%@\r%@", "Team:", "N/A") as String
             viewDataButton.enabled = false;
             scoutNextMatchButton.enabled = false;
-        }
-        else {
+        } else {
             viewDataButton.enabled = true;
             scoutNextMatchButton.enabled = true;
             tournamentLabel.text = NSString.localizedStringWithFormat("%@\r%@", "Tournament:", "\(tournament!.name) - \(fieldStation!)") as String
@@ -104,33 +68,30 @@ class HomeScreenViewController: UIViewController {
     }
     
     func getMatchDataFromTBA() {
-    
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        NSLog("Recieved memory warning.")
-    }
-    
-
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        if (segue.identifier == setUpTournamentSegueIdentifier) {
-            //let destinationViewController = segue.destinationViewController as! SetUpTournamentTableViewController
-            NSLog("Going to set up tournament screen")
+        matches.removeAll()
+        TBAUtils.callTBA("event/\(tournament!.key)/matches") { jsonMatches in
+            for (_,match) in jsonMatches {
+                if (match["comp_level"].stringValue) == "qm" {
+                    let red1 = match["alliances"]["red"]["teams"][0].stringValue
+                    let red2 = match["alliances"]["red"]["teams"][1].stringValue
+                    let red3 = match["alliances"]["red"]["teams"][2].stringValue
+                    let blue1 = match["alliances"]["blue"]["teams"][0].stringValue
+                    let blue2 = match["alliances"]["blue"]["teams"][1].stringValue
+                    let blue3 = match["alliances"]["blue"]["teams"][2].stringValue
+                    let newMatch = Match(red1: red1,
+                                         red2: red2,
+                                         red3: red3,
+                                         blue1: blue1,
+                                         blue2: blue2,
+                                         blue3: blue3,
+                                         matchNumber: match["match_number"].intValue)
+                    self.matches.append(newMatch)
+                }
+            }
+            self.matches.sortInPlace({ (match1, match2) -> Bool in
+                match1.matchNumber < match2.matchNumber
+            })
+            self.configureView()
         }
-        else if (segue.identifier == viewDataSegueIdentifier) {
-            //let destinationViewController = segue.destinationViewController as! ViewDataTableViewController
-            NSLog("Going to view data tournmanet screen")
-        }
-        
-            
     }
-    
-    @IBAction func unwindToHome(seuge: UIStoryboardSegue){}
-
 }

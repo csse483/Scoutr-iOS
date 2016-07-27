@@ -18,6 +18,7 @@ struct Tournament {
     let key : String
     let name : String
 }
+
 struct Match {
     let red1 : String
     let red2: String
@@ -37,19 +38,17 @@ struct Constants {
 }
 
 class TBAUtils : NSObject {
-    
     static func callTBA(url:String, callBack: (data: JSON) -> ()) {
         Alamofire.request(.GET, Constants.tbaURL+url, headers: Constants.tbaHeaders).responseJSON { response in
             switch(response.result) {
-            case .Success(let data):
-                let json = JSON(data)
-                callBack(data: json)
-            case .Failure(let error):
-                print("Alamofire request failed. Error: \(error)")
+                case .Success(let data):
+                    let json = JSON(data)
+                    callBack(data: json)
+                case .Failure(let error):
+                    print("Alamofire request failed. Error: \(error)")
             }
         }
     }
-    
 }
 
 

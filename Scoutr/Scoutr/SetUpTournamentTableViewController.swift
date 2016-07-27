@@ -7,10 +7,7 @@
 //
 
 import UIKit
-import Alamofire
 import SwiftyJSON
-
-
 
 class SetUpTournamentTableViewController: UITableViewController {
     
@@ -35,11 +32,6 @@ class SetUpTournamentTableViewController: UITableViewController {
         tableView.tableHeaderView = searchController.searchBar
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func getTournamentListFromTBA() {
         TBAUtils.callTBA("events/2016") { jsonTournaments in
             for(_,tournament) in jsonTournaments {
@@ -60,16 +52,13 @@ class SetUpTournamentTableViewController: UITableViewController {
         return tournaments.count
     }
 
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
         if searchController.active && searchController.searchBar.text != "" {
             cell.textLabel!.text = filteredTournaments[indexPath.row].name
-            cell.detailTextLabel!.text = filteredTournaments[indexPath.row].key
         }
         else {
             cell.textLabel!.text = tournaments[indexPath.row].name
-            cell.detailTextLabel!.text = tournaments[indexPath.row].key
         }
         return cell
     }
@@ -95,25 +84,20 @@ class SetUpTournamentTableViewController: UITableViewController {
     }
     
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
         if (segue.identifier == segueIdentifier) {
             let destinationViewController = segue.destinationViewController as! HomeScreenViewController
             destinationViewController.fieldStation = self.selectedStation!
             destinationViewController.tournament = selectedTournament
             destinationViewController.matchCount = 0
             NSLog("Going back to home screen. Set up for the \(selectedTournament!.name) at \(self.selectedStation)")
-           
         }
     }
     
     // MARK: - Search
 
-    func filterTournaments(searchText: String)
-    {
+    func filterTournaments(searchText: String) {
         filteredTournaments = tournaments.filter({ (tournament) -> Bool in
             return tournament.name.lowercaseString.containsString(searchText.lowercaseString)
         })
