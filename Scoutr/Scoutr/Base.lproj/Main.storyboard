@@ -28,7 +28,7 @@
                                                 <string key="text">Current Tournament:
 Los Angeles Regional</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
@@ -39,7 +39,7 @@ Los Angeles Regional</string>
                                                 <string key="text">Next Match:
 Qualification Match 6</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
@@ -50,7 +50,7 @@ Qualification Match 6</string>
                                                 <string key="text">Next Team to Scout:
 Team 3476</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="heightClass=regular-widthClass=regular">
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
@@ -291,7 +291,7 @@ Team 3476</string>
                                             <rect key="frame" x="15" y="0.0" width="550" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -304,12 +304,8 @@ Team 3476</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Set Up New Tournament" id="XjF-2E-NPS"/>
-                    <connections>
-                        <segue destination="fct-tv-udk" kind="unwind" identifier="unwindToHome" unwindAction="unwindToHome:" id="5u8-7T-VlZ"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="99t-Ea-m7q" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="fct-tv-udk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="713" y="1372"/>
         </scene>

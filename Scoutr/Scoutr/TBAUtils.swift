@@ -31,7 +31,7 @@ struct Match {
 
 struct Constants {
     static let tbaHeaders = [
-        "X-TBA-App-Id" : "frc281:scouting-system:v01",
+        "X-TBA-App-Id" : "frc5188:scouting-system:v02",
         "Accept" : "application/json"
     ]
     static let tbaURL = "https://www.thebluealliance.com/api/v2/"

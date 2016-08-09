@@ -15,7 +15,6 @@ class HomeScreenViewController: UIViewController {
     @IBOutlet weak var teamLabel: UILabel!
     @IBOutlet weak var viewDataButton: HomeScreenButton!
     @IBOutlet weak var scoutNextMatchButton: HomeScreenButton!
-    @IBAction func unwindToHome(seuge: UIStoryboardSegue){}
     
     var tournament : Tournament? {
         didSet{getMatchDataFromTBA()}

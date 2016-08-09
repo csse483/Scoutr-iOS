@@ -15,12 +15,7 @@ class SetUpTournamentTableViewController: UITableViewController {
     var filteredTournaments : [Tournament] = []
     var tournaments : [Tournament] = []
     let cellIdentifier = "tournamentCell"
-    let segueIdentifier = "unwindToHome"
-    var selectedStation : FieldStation? {
-        didSet{
-            self.performSegueWithIdentifier(self.segueIdentifier, sender: nil)
-        }
-    }
+    var selectedStation : FieldStation?
     var selectedTournament : Tournament?
 
     override func viewDidLoad() {
@@ -72,27 +67,49 @@ class SetUpTournamentTableViewController: UITableViewController {
         }
 
         let ac = UIAlertController(title: "Pick a station to scout", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-        ac.addAction(UIAlertAction(title: "Red 1", style: UIAlertActionStyle.Destructive, handler: {(_) in self.selectedStation = FieldStation.Red1}))
-        ac.addAction(UIAlertAction(title: "Red 2", style: UIAlertActionStyle.Destructive, handler: {(_) in self.selectedStation = FieldStation.Red2}))
-        ac.addAction(UIAlertAction(title: "Red 3", style: UIAlertActionStyle.Destructive, handler: {(_) in self.selectedStation = FieldStation.Red3}))
-        ac.addAction(UIAlertAction(title: "Blue 1", style: UIAlertActionStyle.Default, handler: {(_) in self.selectedStation = FieldStation.Blue1}))
-        ac.addAction(UIAlertAction(title: "Blue 2", style: UIAlertActionStyle.Default, handler: {(_) in self.selectedStation = FieldStation.Blue2}))
-        ac.addAction(UIAlertAction(title: "Blue 3", style: UIAlertActionStyle.Default, handler: {(_) in self.selectedStation = FieldStation.Blue3}))
+        ac.addAction(UIAlertAction(title: "Red 1", style: .Destructive, handler: { (_) in
+            self.selectedStation = .Red1
+            self.goBackToHomeScreen()
+            }))
+        ac.addAction(UIAlertAction(title: "Red 1", style: .Destructive, handler: { (_) in
+            self.selectedStation = .Red1
+            self.goBackToHomeScreen()
+        }))
+        ac.addAction(UIAlertAction(title: "Red 2", style: .Destructive, handler: { (_) in
+            self.selectedStation = .Red2
+            self.goBackToHomeScreen()
+        }))
+        ac.addAction(UIAlertAction(title: "Red 3", style: .Destructive, handler: { (_) in
+            self.selectedStation = .Red3
+            self.goBackToHomeScreen()
+        }))
+        ac.addAction(UIAlertAction(title: "Blue 1", style: .Default, handler: { (_) in
+            self.selectedStation = .Blue1
+            self.goBackToHomeScreen()
+        }))
+        ac.addAction(UIAlertAction(title: "Blue 2", style: .Default, handler: { (_) in
+            self.selectedStation = .Blue2
+            self.goBackToHomeScreen()
+        }))
+        ac.addAction(UIAlertAction(title: "Blue 3", style: .Default, handler: { (_) in
+            self.selectedStation = .Blue3
+            self.goBackToHomeScreen()
+        }))
         ac.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-        self.presentViewController(ac, animated: true) {
-        }
+        self.presentViewController(ac, animated: true, completion: nil)
     }
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == segueIdentifier) {
-            let destinationViewController = segue.destinationViewController as! HomeScreenViewController
-            destinationViewController.fieldStation = self.selectedStation!
-            destinationViewController.tournament = selectedTournament
-            destinationViewController.matchCount = 0
-            NSLog("Going back to home screen. Set up for the \(selectedTournament!.name) at \(self.selectedStation)")
-        }
+    func goBackToHomeScreen() {
+        //let destinationViewController = segue.destinationViewController as! HomeScreenViewController
+        let viewControllers = self.navigationController!.viewControllers
+        let destinationViewController = viewControllers[viewControllers.count-2] as! HomeScreenViewController
+        destinationViewController.fieldStation = self.selectedStation!
+        destinationViewController.tournament = selectedTournament
+        destinationViewController.matchCount = 0
+        NSLog("Going back to home screen. Set up for the \(selectedTournament!.name) at \(self.selectedStation)")
+        self.navigationController!.popViewControllerAnimated(true)
     }
     
     // MARK: - Search
