@@ -28,10 +28,10 @@ class SetUpTournamentTableViewController: UITableViewController {
     }
 
     func getTournamentListFromTBA() {
-        TBAUtils.callTBA("events/2016") { jsonTournaments in
+        TBAUtils.callTBA("events/2015") { jsonTournaments in
             for(_,tournament) in jsonTournaments {
                 if (tournament["official"].boolValue) {
-                    self.tournaments.append(Tournament(key: tournament["key"].stringValue, name: tournament["name"].stringValue))
+                    self.tournaments.append(Tournament(key: tournament["key"].stringValue, name: tournament["short_name"].stringValue))
                 }
             }
             self.tableView.reloadData()
@@ -98,7 +98,8 @@ class SetUpTournamentTableViewController: UITableViewController {
     // MARK: - Navigation
     
     func goBackToHomeScreen() {
-        //let destinationViewController = segue.destinationViewController as! HomeScreenViewController
+        dismissViewControllerAnimated(true, completion: nil)
+        searchController.view.removeFromSuperview()
         let viewControllers = self.navigationController!.viewControllers
         let destinationViewController = viewControllers[viewControllers.count-2] as! HomeScreenViewController
         destinationViewController.fieldStation = self.selectedStation!

@@ -262,12 +262,8 @@ Team 3476</string>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Record Data" id="qhO-tN-sKh"/>
-                    <connections>
-                        <segue destination="HQe-Pa-5St" kind="unwind" identifier="unwindToHome" unwindAction="unwindToHome:" id="N1n-QG-YFD"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yXj-dR-4bX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="HQe-Pa-5St" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1432" y="1046"/>
         </scene>

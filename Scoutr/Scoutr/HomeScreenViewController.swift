@@ -27,8 +27,8 @@ class HomeScreenViewController: UIViewController {
     let setUpTournamentSegueIdentifier = "setUpTournamentSegue"
     let viewDataSegueIdentifier = "viewDataSegue"
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         configureView()
     }
     
