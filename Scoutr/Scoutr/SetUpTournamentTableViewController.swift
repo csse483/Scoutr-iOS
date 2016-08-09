@@ -66,15 +66,11 @@ class SetUpTournamentTableViewController: UITableViewController {
             selectedTournament = tournaments[indexPath.row]
         }
 
-        let ac = UIAlertController(title: "Pick a station to scout", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+        let ac = UIAlertController(title: "Pick a station to scout", message: nil, preferredStyle: .ActionSheet)
         ac.addAction(UIAlertAction(title: "Red 1", style: .Destructive, handler: { (_) in
             self.selectedStation = .Red1
             self.goBackToHomeScreen()
             }))
-        ac.addAction(UIAlertAction(title: "Red 1", style: .Destructive, handler: { (_) in
-            self.selectedStation = .Red1
-            self.goBackToHomeScreen()
-        }))
         ac.addAction(UIAlertAction(title: "Red 2", style: .Destructive, handler: { (_) in
             self.selectedStation = .Red2
             self.goBackToHomeScreen()

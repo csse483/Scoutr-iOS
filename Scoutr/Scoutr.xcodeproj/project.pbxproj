@@ -14,7 +14,6 @@
 		0AB4B71B1D46A48800479505 /* HomeScreenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB4B71A1D46A48800479505 /* HomeScreenButton.swift */; };
 		0AEA2F061D4009D1005C6727 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEA2F051D4009D1005C6727 /* AppDelegate.swift */; };
 		0AEA2F0B1D4009D1005C6727 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AEA2F091D4009D1005C6727 /* Main.storyboard */; };
-		0AEA2F0E1D4009D1005C6727 /* Scoutr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0AEA2F0C1D4009D1005C6727 /* Scoutr.xcdatamodeld */; };
 		0AEA2F101D4009D1005C6727 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AEA2F0F1D4009D1005C6727 /* Assets.xcassets */; };
 		0AEA2F131D4009D1005C6727 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AEA2F111D4009D1005C6727 /* LaunchScreen.storyboard */; };
 		0AF499AA1D46D9A80019D307 /* RecordDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF499A91D46D9A80019D307 /* RecordDataViewController.swift */; };
@@ -30,7 +29,6 @@
 		0AEA2F021D4009D1005C6727 /* Scoutr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scoutr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AEA2F051D4009D1005C6727 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0AEA2F0A1D4009D1005C6727 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0AEA2F0D1D4009D1005C6727 /* Scoutr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Scoutr.xcdatamodel; sourceTree = "<group>"; };
 		0AEA2F0F1D4009D1005C6727 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0AEA2F121D4009D1005C6727 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0AEA2F141D4009D1005C6727 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -91,7 +89,6 @@
 				0AEA2F0F1D4009D1005C6727 /* Assets.xcassets */,
 				0AEA2F111D4009D1005C6727 /* LaunchScreen.storyboard */,
 				0AEA2F141D4009D1005C6727 /* Info.plist */,
-				0AEA2F0C1D4009D1005C6727 /* Scoutr.xcdatamodeld */,
 				0AB4B71A1D46A48800479505 /* HomeScreenButton.swift */,
 			);
 			path = Scoutr;
@@ -240,7 +237,6 @@
 				0AA7B98C1D47C12100750005 /* TBAUtils.swift in Sources */,
 				0AB4B7171D469EED00479505 /* ViewDataTableViewController.swift in Sources */,
 				0AEA2F061D4009D1005C6727 /* AppDelegate.swift in Sources */,
-				0AEA2F0E1D4009D1005C6727 /* Scoutr.xcdatamodeld in Sources */,
 				0AB4B7151D469ED700479505 /* HomeScreenViewController.swift in Sources */,
 				0AF499AA1D46D9A80019D307 /* RecordDataViewController.swift in Sources */,
 				0AB4B7191D469EFC00479505 /* SetUpTournamentTableViewController.swift in Sources */,
@@ -402,19 +398,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		0AEA2F0C1D4009D1005C6727 /* Scoutr.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				0AEA2F0D1D4009D1005C6727 /* Scoutr.xcdatamodel */,
-			);
-			currentVersion = 0AEA2F0D1D4009D1005C6727 /* Scoutr.xcdatamodel */;
-			path = Scoutr.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 0AEA2EFA1D4009D1005C6727 /* Project object */;
 }

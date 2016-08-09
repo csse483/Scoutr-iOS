@@ -17,8 +17,6 @@ class HomeScreenButton: UIButton {
             layer.cornerRadius = 5
         }
     }
-    
-
 
     /*
     // Only override drawRect: if you perform custom drawing.
