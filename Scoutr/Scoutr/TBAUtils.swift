@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import Firebase
 
 enum FieldStation {
     case Red1, Red2, Red3, Blue1, Blue2, Blue3
@@ -35,6 +36,8 @@ struct Constants {
         "Accept" : "application/json"
     ]
     static let tbaURL = "https://www.thebluealliance.com/api/v2/"
+    static let year = 2013
+    static let firebaseRef = FIRDatabase.database().reference().child("data").child("\(year)")
 }
 
 class TBAUtils : NSObject {
