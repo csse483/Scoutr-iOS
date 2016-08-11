@@ -28,7 +28,7 @@ class SetUpTournamentTableViewController: UITableViewController {
     }
 
     func getTournamentListFromTBA() {
-        TBAUtils.callTBA("events/2015") { jsonTournaments in
+        TBAUtils.callTBA("events/\(Constants.year)") { jsonTournaments in
             for(_,tournament) in jsonTournaments {
                 if (tournament["official"].boolValue) {
                     self.tournaments.append(Tournament(key: tournament["key"].stringValue, name: tournament["short_name"].stringValue))
