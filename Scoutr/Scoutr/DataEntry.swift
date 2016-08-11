@@ -29,8 +29,10 @@ class DataEntry: NSObject {
     var disksLoadedFromHP : Int
     var pyramidLevelClimbed : Int
     var autoType:AutoType
+    var match : Int
+    var team : String
     
-    init(autoShotsAttempted:Int, autoShotsMade:Int, safeShotsAttempted:Int, safeShotsMade:Int, fullCourtShotsAttempted:Int, fullCourtShotsMade:Int, dumpShotsAttempted:Int, dumpShotsMade:Int, disksLoadedFromFloor:Int, disksLoadedFromHP:Int, pyramidLevelClimbed:Int, autoType:AutoType) {
+    init(autoShotsAttempted:Int, autoShotsMade:Int, safeShotsAttempted:Int, safeShotsMade:Int, fullCourtShotsAttempted:Int, fullCourtShotsMade:Int, dumpShotsAttempted:Int, dumpShotsMade:Int, disksLoadedFromFloor:Int, disksLoadedFromHP:Int, pyramidLevelClimbed:Int, autoType:AutoType, match:Int, team:String) {
         self.autoShotsAttempted = autoShotsAttempted
         self.autoShotsMade = autoShotsMade
         self.safeShotsAttempted = safeShotsAttempted
@@ -43,6 +45,8 @@ class DataEntry: NSObject {
         self.disksLoadedFromHP = disksLoadedFromHP
         self.pyramidLevelClimbed = pyramidLevelClimbed
         self.autoType = autoType
+        self.match = match
+        self.team = team
     }
     
     init (snapshot : FIRDataSnapshot) {
@@ -58,6 +62,8 @@ class DataEntry: NSObject {
         self.disksLoadedFromHP = snapshot.value!["disksLoadedFromHP"] as! Int
         self.pyramidLevelClimbed = snapshot.value!["pyramidLevelClimbed"] as! Int
         self.autoType = snapshot.value!["autoType"] as! AutoType
+        self.match = snapshot.value!["match"] as! Int
+        self.team = snapshot.value!["team"] as! String
     }
     
     func getSnapshotValue() -> NSDictionary {
@@ -74,6 +80,8 @@ class DataEntry: NSObject {
         data.setValue(self.disksLoadedFromHP, forKey: "disksLoadedFromHP")
         data.setValue(self.pyramidLevelClimbed, forKey: "pyramidLevelClimbed")
         data.setValue(self.autoType.rawValue, forKey: "autoType")
+        data.setValue(self.match, forKey: "match")
+        data.setValue(self.team, forKey: "team")
         return data
         
     }

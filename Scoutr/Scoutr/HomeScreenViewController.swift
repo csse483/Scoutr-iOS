@@ -26,6 +26,7 @@ class HomeScreenViewController: UIViewController {
     
     let setUpTournamentSegueIdentifier = "setUpTournamentSegue"
     let viewDataSegueIdentifier = "viewDataSegue"
+    let recordDataSegueIdentifier = "recordDataSegueIdentifier"
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -46,24 +47,28 @@ class HomeScreenViewController: UIViewController {
             self.view.backgroundColor = self.fieldStation!.hashValue > 2 ? UIColor(red: 205/256, green: 253/256, blue: 253/256, alpha: 1): UIColor(red: 247/256, green: 211/256, blue: 211/256, alpha: 1)
             if (!matches.isEmpty) {
                 matchLabel.text = NSString.localizedStringWithFormat("%@\r%@", "Match:", "\(matches[matchCount].matchNumber)") as String
-                var nextTeamToScout : String
-                switch(fieldStation!) {
-                case .Blue1:
-                    nextTeamToScout = matches[matchCount].blue1
-                case .Blue2:
-                    nextTeamToScout = matches[matchCount].blue2
-                case .Blue3:
-                    nextTeamToScout = matches[matchCount].blue3
-                case .Red1:
-                    nextTeamToScout = matches[matchCount].red1
-                case .Red2:
-                    nextTeamToScout = matches[matchCount].red2
-                case .Red3:
-                    nextTeamToScout = matches[matchCount].red3
-                }
-                teamLabel.text = NSString.localizedStringWithFormat("%@\r%@", "Team:", nextTeamToScout) as String
+                teamLabel.text = NSString.localizedStringWithFormat("%@\r%@", "Team:", getNextTeamToScout()) as String
             }
         }
+    }
+    
+    func getNextTeamToScout() -> String {
+        var nextTeamToScout : String
+        switch(fieldStation!) {
+        case .Blue1:
+            nextTeamToScout = matches[matchCount].blue1
+        case .Blue2:
+            nextTeamToScout = matches[matchCount].blue2
+        case .Blue3:
+            nextTeamToScout = matches[matchCount].blue3
+        case .Red1:
+            nextTeamToScout = matches[matchCount].red1
+        case .Red2:
+            nextTeamToScout = matches[matchCount].red2
+        case .Red3:
+            nextTeamToScout = matches[matchCount].red3
+        }
+        return nextTeamToScout
     }
     
     func getMatchDataFromTBA() {
@@ -92,5 +97,15 @@ class HomeScreenViewController: UIViewController {
             })
             self.configureView()
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == recordDataSegueIdentifier) {
+            let controller = segue.destinationViewController as! RecordDataViewController
+            controller.matchNumber = matches[matchCount].matchNumber
+            controller.team = getNextTeamToScout()
+            controller.tournamentKey = tournament?.key
+        }
+        
     }
 }
