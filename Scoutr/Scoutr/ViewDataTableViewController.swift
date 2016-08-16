@@ -9,21 +9,12 @@
 import UIKit
 import Firebase
 
-class Team {
+struct Team {
     var teamNumber : String = ""
     var shotsAttempted = 0
     var shotsMade = 0
     var shotPercentage : Double {
-        if (shotsAttempted < 1) {
-            return 0.0
-        }
-        return (Double (shotsMade) / Double (shotsAttempted))
-    }
-    
-    init(teamNumber : String, shotsAttempted : Int, shotsMade : Int) {
-        self.teamNumber = teamNumber
-        self.shotsAttempted = shotsAttempted
-        self.shotsMade = shotsMade
+        return (shotsAttempted < 1) ? 0.0 : (Double(shotsMade) / Double(shotsAttempted))
     }
 }
 
@@ -42,7 +33,7 @@ class ViewDataTableViewController: UITableViewController {
             for data in snapshot.children {
                 var teamAdded = false
                 let dataEntry = DataEntry(snapshot: data as! FIRDataSnapshot)
-                for team in self.teams {
+                for var team in self.teams {
                     if (team.teamNumber == dataEntry.team) {
                         team.shotsAttempted+=dataEntry.shotsAttempted()
                         team.shotsMade+=dataEntry.shotsMade()
