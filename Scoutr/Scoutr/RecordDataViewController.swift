@@ -105,15 +105,6 @@ class RecordDataViewController: UIViewController {
         pyramidLevel.text = String(pyramidLevelClimbed!)
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-
     @IBAction func pressedSaveMatchData(sender: AnyObject) {
         
        let newDataEntry = DataEntry(autoShotsAttempted: autoShotsAttempted!, autoShotsMade: autoShotsMade!, safeShotsAttempted: safeShotsAttempted!, safeShotsMade: safeShotsMade!, fullCourtShotsAttempted: fullCourtShotsAttempted!, fullCourtShotsMade: fullCourtShotsMade!, dumpShotsAttempted: dumpShotsAttempted!, dumpShotsMade: dumpShotsMade!, disksLoadedFromFloor: disksLoadedFromFloor!, disksLoadedFromHP: disksLoadedFromHP!, pyramidLevelClimbed: pyramidLevelClimbed!, autoType: autoType!, match: matchNumber!, team: team!)
@@ -128,8 +119,6 @@ class RecordDataViewController: UIViewController {
     override func viewDidLoad() {
         firebaseRef = Constants.firebaseRef.child("\(tournamentKey!)")
         super.viewDidLoad()
-        
-        
     }
     
     override func viewWillAppear(animated: Bool) {

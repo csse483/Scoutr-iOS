@@ -61,7 +61,7 @@ class DataEntry: NSObject {
         self.disksLoadedFromFloor = snapshot.value!["disksLoadedFromFloor"] as! Int
         self.disksLoadedFromHP = snapshot.value!["disksLoadedFromHP"] as! Int
         self.pyramidLevelClimbed = snapshot.value!["pyramidLevelClimbed"] as! Int
-        self.autoType = snapshot.value!["autoType"] as! AutoType
+        self.autoType = AutoType(rawValue: snapshot.value!["autoType"] as! Int)!
         self.match = snapshot.value!["match"] as! Int
         self.team = snapshot.value!["team"] as! String
     }
@@ -83,8 +83,13 @@ class DataEntry: NSObject {
         data.setValue(self.match, forKey: "match")
         data.setValue(self.team, forKey: "team")
         return data
-        
     }
     
+    func shotsAttempted() -> Int {
+        return autoShotsAttempted+safeShotsAttempted+fullCourtShotsAttempted+dumpShotsAttempted
+    }
     
+    func shotsMade() -> Int {
+        return autoShotsMade+safeShotsMade+fullCourtShotsMade+dumpShotsMade
+    }
 }

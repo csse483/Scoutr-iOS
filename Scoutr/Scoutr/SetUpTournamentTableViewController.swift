@@ -105,7 +105,6 @@ class SetUpTournamentTableViewController: UITableViewController {
         destinationViewController.fieldStation = self.selectedStation!
         destinationViewController.tournament = selectedTournament
         destinationViewController.matchCount = 0
-        NSLog("Going back to home screen. Set up for the \(selectedTournament!.name) at \(self.selectedStation)")
         self.navigationController!.popViewControllerAnimated(true)
     }
     

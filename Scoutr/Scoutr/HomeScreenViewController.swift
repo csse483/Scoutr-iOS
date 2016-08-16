@@ -106,6 +106,10 @@ class HomeScreenViewController: UIViewController {
             controller.team = getNextTeamToScout()
             controller.tournamentKey = tournament?.key
         }
+        if (segue.identifier == viewDataSegueIdentifier) {
+            let controller = segue.destinationViewController as! ViewDataTableViewController
+            controller.dataRef = Constants.firebaseRef.child("\(tournament!.key)")
+        }
         
     }
 }
