@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A00FF3E1D64303C00D4AA77 /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A00FF3D1D64303C00D4AA77 /* DataTableViewCell.swift */; };
 		0AA7B98C1D47C12100750005 /* TBAUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA7B98B1D47C12100750005 /* TBAUtils.swift */; };
 		0AB4B7151D469ED700479505 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB4B7141D469ED700479505 /* HomeScreenViewController.swift */; };
 		0AB4B7171D469EED00479505 /* ViewDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB4B7161D469EED00479505 /* ViewDataTableViewController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A00FF3D1D64303C00D4AA77 /* DataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataTableViewCell.swift; sourceTree = "<group>"; };
 		0AA7B98B1D47C12100750005 /* TBAUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBAUtils.swift; sourceTree = "<group>"; };
 		0AB4B7141D469ED700479505 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		0AB4B7161D469EED00479505 /* ViewDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewDataTableViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				0AEA2F141D4009D1005C6727 /* Info.plist */,
 				0AB4B71A1D46A48800479505 /* HomeScreenButton.swift */,
 				48174A4C1D5CB96C00F8DABD /* GoogleService-Info.plist */,
+				0A00FF3D1D64303C00D4AA77 /* DataTableViewCell.swift */,
 			);
 			path = Scoutr;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				0AA7B98C1D47C12100750005 /* TBAUtils.swift in Sources */,
 				0AB4B7171D469EED00479505 /* ViewDataTableViewController.swift in Sources */,
 				0AEA2F061D4009D1005C6727 /* AppDelegate.swift in Sources */,
+				0A00FF3E1D64303C00D4AA77 /* DataTableViewCell.swift in Sources */,
 				0AB4B7151D469ED700479505 /* HomeScreenViewController.swift in Sources */,
 				0AF499AA1D46D9A80019D307 /* RecordDataViewController.swift in Sources */,
 				0ADBD7211D59AB8F00B6CCC1 /* DataEntry.swift in Sources */,

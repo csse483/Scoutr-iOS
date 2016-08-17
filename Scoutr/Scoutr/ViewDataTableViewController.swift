@@ -56,13 +56,23 @@ class ViewDataTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return teams.count
+        return teams.count+1
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("viewDataCell", forIndexPath: indexPath)
-        cell.textLabel?.text = teams[indexPath.row].teamNumber
-        cell.detailTextLabel!.text = "\(teams[indexPath.row].shotPercentage)"
+        let cell = tableView.dequeueReusableCellWithIdentifier("viewDataCell", forIndexPath: indexPath) as! DataTableViewCell
+        if (indexPath.row == 0) {
+            cell.teamLabel.text = "Team"
+            cell.shotsLabel.text = "Shots"
+            cell.percentageLabel.text = "Accuracy"
+        }
+        else {
+            let team = teams[indexPath.row-1]
+            cell.teamLabel.text = team.teamNumber
+            cell.percentageLabel.text = "\(team.shotPercentage * 100)%"
+            cell.shotsLabel.text = "\(team.shotsMade)/\(team.shotsAttempted)"
+        }
+
         return cell
     }
 

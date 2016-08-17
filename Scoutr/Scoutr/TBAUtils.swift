@@ -28,7 +28,7 @@ struct Match {
     let blue2 : String
     let blue3 : String
     let matchNumber : Int
-}
+}                      
 
 struct Constants {
     static let tbaHeaders = [
